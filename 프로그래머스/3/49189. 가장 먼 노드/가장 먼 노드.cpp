@@ -36,7 +36,7 @@ int solution(int n, vector<vector<int>> edges)
     // 마지막으로 방문한 노드를 확인하기 위해 '현재 노드' 변수를 while문 바깥으로 꺼냄
     int current = 0;
 
-    // 다익스트라 알고리즘을 사용해 최단거리 탐색
+    // 너비 우선 탐색
     while (toVisit.empty() == false)
     {
         current = toVisit.front();
