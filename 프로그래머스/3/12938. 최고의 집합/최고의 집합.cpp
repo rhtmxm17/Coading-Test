@@ -11,15 +11,21 @@ vector<int> solution(int n, int s)
 		return vector<int>(1, -1);
 	}
 
+	// s를 최대한 균등하게 나누기 위해서 divided로 나눠준 후, 나머지를 뒤에서부터 1씩 더하는 방법을 사용
 	int divided = s / n;
 	int remainder = s % n;
 
-	// s를 최대한 균등하게 나누기 위해서 divided로 나눠준 후, 나머지를 뒤에서부터 1씩 더함
-	vector<int> answer(n, divided);
-	for (int i = 0; i < remainder; ++i)
-	{
-		answer[n - 1 - i] += 1;
-	}
+	vector<int> answer;
+	answer.reserve(n); // 미리 공간 확보
+
+	// divided 값을 갖는 n - remainder 개의 원소
+	vector<int> first(n - remainder, divided);
+	// divided + 1 값을 갖는 remainder 개의 원소
+	vector<int> second(remainder, divided + 1);
+
+	// 두 배열을 합침
+	answer.insert(answer.end(), first.begin(), first.end());
+	answer.insert(answer.end(), second.begin(), second.end());
 
     return answer;
 }
